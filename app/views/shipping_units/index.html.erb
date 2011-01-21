@@ -1,0 +1,21 @@
+<h1>Listing shipping_units</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @shipping_units.each do |shipping_unit| %>
+  <tr>
+    <td><%= link_to 'Show', shipping_unit %></td>
+    <td><%= link_to 'Edit', edit_shipping_unit_path(shipping_unit) %></td>
+    <td><%= link_to 'Destroy', shipping_unit, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Shipping unit', new_shipping_unit_path %>

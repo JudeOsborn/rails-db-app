@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>AuroraProducts</title>
+  <%= stylesheet_link_tag :all %>
+  <link rel="stylesheet" href="/stylesheets/blueprint/screen.css" type="text/css" media="screen, projection">
+  <link rel="stylesheet" href="/stylesheets/blueprint/print.css" type="text/css" media="print">
+  <!--[if lt IE 8]>
+    <link rel="stylesheet" href="/stylesheets/blueprint/ie.css" type="text/css" media="screen, projection">
+  <![endif]--></code></pre>  
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+<header>
+<span id="logo"><a href="/">Aurora Product History</a></span>
+<ul>
+  <li><a href="/items/">Products</a></li>
+  <li><a href="/print_jobs/">Print Jobs</a></li>
+  <li><a href="/orders/">Orders</a></li>
+</ul>
+</header>
+<section>
+<%= yield %>
+</section>
+</body>
+</html>

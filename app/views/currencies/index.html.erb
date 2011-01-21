@@ -1,0 +1,15 @@
+<h1>Listing currencies</h1>
+
+<table>
+  <tr>
+    <th>Code</th>
+    <th>Description</th>
+  </tr>
+
+<% @currencies.each do |currency| %>
+  <tr>
+    <td><%= currency.code %></td>
+    <td><%= currency.description %></td>
+  </tr>
+<% end %>
+</table>

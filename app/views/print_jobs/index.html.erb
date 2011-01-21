@@ -1,0 +1,19 @@
+<h1>Print Jobs</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @print_jobs.each do |print_job| %>
+  <tr>
+    <td><%= link_to 'Show', print_job %></td>
+    <td><%= link_to 'Edit', edit_print_job_path(print_job) %></td>
+    <td><%= link_to 'Destroy', print_job, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />

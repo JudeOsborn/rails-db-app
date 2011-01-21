@@ -1,0 +1,21 @@
+<h1>Listing items_ordereds</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @items_ordereds.each do |items_ordered| %>
+  <tr>
+    <td><%= link_to 'Show', items_ordered %></td>
+    <td><%= link_to 'Edit', edit_items_ordered_path(items_ordered) %></td>
+    <td><%= link_to 'Destroy', items_ordered, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Items ordered', new_items_ordered_path %>

@@ -1,0 +1,100 @@
+<%= link_to 'Back', orders_path %>
+
+<h2>Order #<%= @order.id %></h2>
+
+<p id="notice"><%= notice %></p>
+
+<div>
+<% if @order.items_ordered.blank? %>
+<p>This order does not contain any products.</p>
+<% else %>
+<table>
+    <th>Qty</th>
+    <th>Cartons</th>
+    <th>Title</th>
+    <th>P. Code</th>
+    <th>Language</th>
+    <th>Subcategory</th>
+    <th>Format</th>
+    <th>Available</th>
+    <th>Est. date in stock</th>
+    <th>Price</th>
+    <th>Total cost</th>
+    <% for item_ordered in @order.items_ordered %>
+    <tr>
+        <td><%= item_ordered.quantity %></td>
+        <td><%= item_ordered.cartons %></td>
+        <td><%= item_ordered.item.blank? ? '-Deleted product!-' : item_ordered.item.final_title %></td>
+        <td><%= item_ordered.item.blank? ? 'None' : item_ordered.item.product_code %></td>
+        <td><%= item_ordered.item.blank? ? 'None' : item_ordered.item.language.language %></td>
+        <td><%= item_ordered.item.blank? ? 'None' : item_ordered.item.subcategory.subcategory %></td>
+        <td><%= item_ordered.item.blank? || item_ordered.item.format.format == '- None -' ? 'None' : item_ordered.item.format.format %></td>
+        <td><%= item_ordered.item.blank? ? 'None' : item_ordered.item.info.final_stock %></td>
+        <td><%= item_ordered.item.blank? || item_ordered.item.info.projected_printing.nil? ? 'None' : item_ordered.item.info.projected_printing %></td>
+        <td><%= item_ordered.item.blank? ? 'None' : number_to_currency(item_ordered.final_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td>
+        <td><%= number_to_currency(item_ordered.total_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td>
+    </tr>
+    <% end %>
+</table>
+<% end %>
+</div>
+
+<hr />
+
+<div class="auto-width">
+<table>
+    <tr><td class="label">Order #:</td><td><%= @order.id %></td></tr>
+    <tr><td class="label">Description:</td><td><%= @order.description %></td></tr>
+    <tr><td class="label">Invoice #:</td><td><%= @order.invoice_number %></td></tr>
+    <tr><td class="label">Order status:</td><td><%= @order.order_status.blank? ? 'None' : @order.order_status.status %></td></tr>
+    <tr><td class="label">Last checkout:</td><td><%= @order.order_date %></td></tr>
+</table>
+</div>
+
+<hr />
+
+<h3>Totals and Shipping Info</h3>
+<div class="left">
+<table>
+    <tr><td class="label">Shipping method:</td><td><%= @order.shipping_type.name %></td></tr>
+    <tr><td class="label">Ship to:</td><td><%= @order.zone.blank? ? 'None' : @order.zone.zone %></td></tr>
+    <tr><td class="label">Total weight:</td><td><%= number_to_human(@order.total_weight) %> <%= @order.shipping_type.shipping_unit.nil? ? 'None' : @order.shipping_type.shipping_unit.short_unit %></td></tr>
+    <tr><td class="label">Total cartons:</td><td><%= number_with_precision(@order.total_cartons) %> 
+    <% if @order.total_m3s > 0 %>
+     (<%= number_with_precision(@order.total_m3s) %> M<sup>3</sup>)
+    <% end %>
+    </td>
+    </tr>
+    <tr><td class="label">Cost:</td><td><%= number_to_currency(@order.final_total_item_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+    <tr><td class="label">Estimated shipping:</td><td><%= number_to_currency(@order.base_shipping_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+    <tr><td class="label">Surcharges:</td><td><%= number_to_currency(@order.surcharge_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+    <tr><td class="label">Estimated total shipping:</td><td><%= number_to_currency(@order.final_shipping_cost, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+    <tr><td class="label">Discount or surcharge:</td><td><%= number_to_currency(@order.discount_surcharge, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+    <tr><td class="label">Estimated grand total:</td><td><%= number_to_currency(@order.grand_total, options = {:unit => ''}) %> <%= @order.currency.code %></td></tr>
+</table>
+</div>
+<div class="left">
+<table>
+    <tr><td class="label">Arrived:</td><td><%= @order.arrived %></td></tr>
+    <tr><td class="label">Shipped:</td><td><%= @order.ship_date %></td></tr>
+    <tr><td class="label">BOL/Papers/Invoice Sent:</td><td><%= @order.bol_papers_invoice_sent %></td></tr>
+    <tr><td class="label">BOL #:</td><td><%= @order.bol_number %></td></tr>
+    <tr><td class="label">Tracking #:</td><td><%= @order.tracking_number %></td></tr>
+    <tr><td class="label">Shipping Agent:</td><td><%= @order.shipping_agent %></td></tr>
+    <tr><td class="label">Include this order in sales reports:</td><td><%= @order.is_reportable %></td></tr>
+</table>
+</div>
+
+<hr />
+
+<h3>Notes and Comments</h3>
+<p class="label">Comments and special instructions from this customer to you:</p>
+<p><%= @order.comment %></p>
+
+<p class="label">Notes from you to this customer:</p>
+<p><%= @order.aurora_comments %></p>
+
+<p class="label">Notes from Aurora to Thailand:</p>
+<p><%= @order.aurora_comments_printer %></p>
+
+<%= link_to 'Back', orders_path %>

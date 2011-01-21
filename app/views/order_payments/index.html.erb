@@ -1,0 +1,21 @@
+<h1>Listing order_payments</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @order_payments.each do |order_payment| %>
+  <tr>
+    <td><%= link_to 'Show', order_payment %></td>
+    <td><%= link_to 'Edit', edit_order_payment_path(order_payment) %></td>
+    <td><%= link_to 'Destroy', order_payment, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Order payment', new_order_payment_path %>

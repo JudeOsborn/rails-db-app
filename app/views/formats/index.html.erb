@@ -1,0 +1,21 @@
+<h1>Listing formats</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @formats.each do |format| %>
+  <tr>
+    <td><%= link_to 'Show', format %></td>
+    <td><%= link_to 'Edit', edit_format_path(format) %></td>
+    <td><%= link_to 'Destroy', format, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Format', new_format_path %>
