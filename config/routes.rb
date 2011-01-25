@@ -1,4 +1,6 @@
 AuroraProducts::Application.routes.draw do
+  resources :print_job_comments
+
   resources :subcategories
 
   resources :shipping_units

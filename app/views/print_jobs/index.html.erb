@@ -1,17 +1,23 @@
-<h1>Print Jobs</h1>
+<h1>Orders</h1>
 
 <table>
   <tr>
     <th></th>
-    <th></th>
-    <th></th>
+    <th>Code</th>
+    <th>Description</th>
+    <th>Estimated Done</th>
+    <th>Printer</th>
+    <th>Active</th>
   </tr>
 
 <% @print_jobs.each do |print_job| %>
   <tr>
-    <td><%= link_to 'Show', print_job %></td>
-    <td><%= link_to 'Edit', edit_print_job_path(print_job) %></td>
-    <td><%= link_to 'Destroy', print_job, :confirm => 'Are you sure?', :method => :delete %></td>
+    <td><%= link_to 'Details', print_job %></td>
+    <td><%= print_job.code %></td>
+    <td><%= print_job.description %></td>
+    <td><%= print_job.estimated_completed %></td>
+    <td><%= print_job.printer.name %></td>
+    <td><%= print_job.active %></td>
   </tr>
 <% end %>
 </table>

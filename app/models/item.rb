@@ -1,9 +1,11 @@
 class Item < ActiveRecord::Base
   has_many :items_ordereds
   has_many :product_info, :foreign_key=>'items_id'
+  has_many :items_print_jobs
   belongs_to :subcategory, :foreign_key=>'subcategories_id'
   belongs_to :format, :foreign_key=>'formats_id'
   belongs_to :language, :foreign_key=>'languages_id'
+
 
   def info
     product_info.find(:first, :conditions => ['items_id = ? and companies_id = 7', id.to_s])

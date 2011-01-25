@@ -1,5 +1,69 @@
+<%= link_to 'Back', print_jobs_path %>
+
+<h2>Order #<%= @print_job.code %></h2>
+
 <p id="notice"><%= notice %></p>
 
+<div>
+<% if @print_job.items_print_jobs.blank? %>
+<p>This print job does not contain any products.</p>
+<% else %>
+<table>
+    <th>Title</th>
+    <th>PC</th>
+    <th>Qty</th>
+    <th>E. cost/copy</th>
+    <th>F. cost</th>
+    <th>F. Printed</th>
+    <th>P. type</th>
+    <th>C. type</th>
+    <th>C. weight</th>
+    <th>Dimensions</th>
+    <th>Staple</th>
+    <th>Carton weight</th>
+    <th>Quantity carton</th>
+    <th>E. Date in stock </th>
+    <% for print_job_item in @print_job.items_print_jobs %>
+    <tr>
+        <td><%= print_job_item.item.blank? ? '-Deleted product!-' : print_job_item.item.final_title %></td>
+        <td><%= print_job_item.item.product_code %></td>
+        <td><%= print_job_item.quantity %></td>
+        <td><%= print_job_item.estimated_cost_copy %></td>
+        <td><%= print_job_item.final_cost %></td>
+        <td><%= print_job_item.final_printed %></td>
+        <td><%= print_job_item.cover_type %></td>
+        <td><%= print_job_item.cover_weight %></td>
+        <td><%= print_job_item.dimensions %></td>
+        <td><%= print_job_item.staple %></td>
+        <td><%= print_job_item.item.final_weight %></td>
+        <td><%= print_job_item.item.info.carton_weight %></td>
+        <td><%= print_job_item.item.info.quantity_carton %></td>
+        <td><%= print_job_item.item.info.projected_printing %></td>
+    </tr>
+    <% end %>
+</table>
+<% end %>
+</div>
 
-<%= link_to 'Edit', edit_print_job_path(@print_job) %> |
+<hr />
+
+<div class="auto-width">
+<table>
+    <tr><td class="label">Code</td><td><%= @print_job.code %></td></tr>
+    <tr><td class="label">Description:</td><td><%= @print_job.description %></td></tr>
+    <tr><td class="label">Date:</td><td><%= @print_job.job_date %></td></tr>
+    <tr><td class="label">Priority:</td><td><%= @print_job.priority %></td></tr>
+    <tr><td class="label">Purchase order:</td><td><%= @print_job.purchase_order %></td></tr>
+    <tr><td class="label">Printer:</td><td><%= @print_job.printer.name %></td></tr>
+    <tr><td class="label">Currency:</td><td><%= @print_job.currency.code %></td></tr>
+</table>
+</div>
+
+<hr />
+<h3>Comments</h3>
+<% for print_job_comment in @print_job.print_job_comments %>
+<p><%= print_job_comment.comment_text %></p>
+<hr />
+<% end %>
+
 <%= link_to 'Back', print_jobs_path %>
