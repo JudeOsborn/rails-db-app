@@ -55,6 +55,6 @@ class Order < ActiveRecord::Base
   end
 
   def grand_total
-    final_total_item_cost + final_shipping_cost + discount_surcharge
+    final_total_item_cost + final_shipping_cost + discount_surcharge + surcharge_cost
   end
 end
