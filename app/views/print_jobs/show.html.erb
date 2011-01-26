@@ -59,6 +59,22 @@
 </table>
 </div>
 
+<h3>Statuses</h3>
+<div>
+<table>
+    <th>Status</th>
+    <th>Date</th>
+    <th>Completed</th>
+    <% for status_date in @print_job.print_job_status_dates %>
+    <tr>
+      <td class="label"><%= status_date.print_job_status.status %>:</td>
+      <td><%= status_date.status_date %></td>
+      <td><%= status_date.completed == 1 ? 'Yes' : 'No' %></td>
+    </tr>
+    <% end %>
+</table>
+</div>
+
 <hr />
 <h3>Comments</h3>
 <% for print_job_comment in @print_job.print_job_comments %>

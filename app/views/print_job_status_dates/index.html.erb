@@ -1,0 +1,21 @@
+<h1>Listing print_job_status_dates</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @print_job_status_dates.each do |print_job_status_date| %>
+  <tr>
+    <td><%= link_to 'Show', print_job_status_date %></td>
+    <td><%= link_to 'Edit', edit_print_job_status_date_path(print_job_status_date) %></td>
+    <td><%= link_to 'Destroy', print_job_status_date, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Print job status date', new_print_job_status_date_path %>

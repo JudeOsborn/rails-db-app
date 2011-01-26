@@ -1,25 +1,65 @@
 <h1>Orders</h1>
 
-<table>
-  <tr>
-    <th></th>
-    <th>Code</th>
-    <th>Description</th>
-    <th>Estimated Done</th>
-    <th>Printer</th>
-    <th>Active</th>
-  </tr>
+<table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable">
+  <thead>
+    <tr>
+      <th><h4></h4></th>
+      <th><h4>Code</h4></th>
+      <th><h4>Description</h4></th>
+      <th><h4>Estimated Done</h4></th>
+      <th><h4>Printer</h4></th>
+      <th><h4>Active</h4></th>
+    </tr>
+  </thead>
 
-<% @print_jobs.each do |print_job| %>
-  <tr>
-    <td><%= link_to 'Details', print_job %></td>
-    <td><%= print_job.code %></td>
-    <td><%= print_job.description %></td>
-    <td><%= print_job.estimated_completed %></td>
-    <td><%= print_job.printer.name %></td>
-    <td><%= print_job.active %></td>
-  </tr>
-<% end %>
+  <tbody>
+    <% @print_jobs.each do |print_job| %>
+    <tr>
+      <td><%= link_to 'Details', print_job %></td>
+      <td><%= print_job.code %></td>
+      <td><%= print_job.description %></td>
+      <td><%= print_job.estimated_completed %></td>
+      <td><%= print_job.printer.name %></td>
+      <td><%= print_job.active %></td>
+    </tr>
+    <% end %>
+  </tbody>
 </table>
 
+<div id="controls">
+  <div id="perpage">
+    <select onchange="sorter.size(this.value)">
+    <option value="5">5</option>
+      <option value="10" selected="selected">10</option>
+      <option value="20">20</option>
+      <option value="50">50</option>
+      <option value="100">100</option>
+    </select>
+    <span>Entries Per Page</span>
+  </div>
+  <div id="navigation">
+    <img src="/images/first.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1,true)" />
+    <img src="/images/previous.gif" width="16" height="16" alt="First Page" onclick="sorter.move(-1)" />
+    <img src="/images/next.gif" width="16" height="16" alt="First Page" onclick="sorter.move(1)" />
+    <img src="/images/last.gif" width="16" height="16" alt="Last Page" onclick="sorter.move(1,true)" />
+  </div>
+  <div id="text">Displaying Page <span id="currentpage"></span> of <span id="pagelimit"></span></div>
+</div>
+
 <br />
+
+<%= javascript_include_tag 'script.js' %>
+<script type="text/javascript">
+  var sorter = new TINY.table.sorter("sorter");
+  sorter.head = "head";
+  sorter.asc = "asc";
+  sorter.desc = "desc";
+  sorter.even = "evenrow";
+  sorter.odd = "oddrow";
+  sorter.evensel = "evenselected";
+  sorter.oddsel = "oddselected";
+  sorter.paginate = true;
+  sorter.currentid = "currentpage";
+  sorter.limitid = "pagelimit";
+  sorter.init("table", 1);
+</script>

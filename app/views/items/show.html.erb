@@ -1,5 +1,40 @@
+<%= link_to 'Back', items_path %>
+
+<h2>Product #<%= @item.id %></h2>
+
 <p id="notice"><%= notice %></p>
 
+<div class="auto-width">
+<table>
+    <tr><td class="label">Id:</td><td><%= @item.id %></td></tr>
+    <tr><td class="label">Title:</td><td><%= @item.title %></td></tr>
+    <tr><td class="label">Local language title:</td><td><%= @item.ll_title %></td></tr>
+    <tr><td class="label">Product code:</td><td><%= @item.product_code %></td></tr>
+    <tr><td class="label">Language:</td><td><%= @item.language.language %></td></tr>
+    <tr><td class="label">Category:</td><td><%= @item.full_category %></td></tr>
+    <tr><td class="label">Format:</td><td><%= @item.format.format %></td></tr>
+    <tr><td class="label">Length:</td><td><%= @item.length %></td></tr>
+    <tr><td class="label">Author:</td><td><%= @item.author.blank? ? 'None' : @item.author.name %></td></tr>
+    <tr><td class="label">Date published:</td><td><%= @item.info.published %></td></tr>
+    <tr><td class="label">Date copyrighted:</td><td><%= @item.copyrighted %></td></tr>
+    <tr><td class="label">Use reg:</td><td><%= @item.us_reg %></td></tr>
+    <tr><td class="label">Weight:</td><td><%= @item.final_weight %></td></tr>
+    <tr><td class="label">Ages:</td><td><%= @item.ages %></td></tr>
+    <tr><td class="label">In print:</td><td><%= @item.inprint == 1 ? 'Yes' : 'No' %></td></tr>
+    <tr><td class="label">Stock:</td><td><%= @item.info.stock %></td></tr>
+    <tr><td class="label">Quantity per Carton:</td><td><%= @item.info.quantity_carton %></td></tr>
+    <tr><td class="label">Carton weight:</td><td><%= @item.info.carton_weight %></td></tr>
+    <tr><td class="label">Carton per M<sup>3</sup>:</td><td><%= @item.info.carton_m3 %></td></tr>
+    <tr><td class="label">Estimated stock:</td><td><%= @item.info.estimated_stock %></td></tr>
+    <tr><td class="label">Estimated date in stock:</td><td><%= @item.info.projected_printing %></td></tr>
+    <tr><td class="label">Aurora product:</td><td><%= @item.info.aurora_product == 1 ? 'Yes' : 'No' %></td></tr>
+</table>
+</div>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
+<h3>Comment</h3>
+<p><%= @item.comments %></p>
+
+<h3>Announcement</h3>
+<p><%= @item.announcements %></p>
+
 <%= link_to 'Back', items_path %>

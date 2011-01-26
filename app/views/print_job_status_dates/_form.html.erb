@@ -1,0 +1,17 @@
+<%= form_for(@print_job_status_date) do |f| %>
+  <% if @print_job_status_date.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@print_job_status_date.errors.count, "error") %> prohibited this print_job_status_date from being saved:</h2>
+
+      <ul>
+      <% @print_job_status_date.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,4 +1,8 @@
 AuroraProducts::Application.routes.draw do
+  resources :print_job_statuses
+
+  resources :print_job_status_dates
+
   resources :print_job_comments
 
   resources :subcategories
@@ -101,4 +105,6 @@ AuroraProducts::Application.routes.draw do
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id(.:format)))'
+  
+  root :controller => 'orders', :action => 'index'
 end
