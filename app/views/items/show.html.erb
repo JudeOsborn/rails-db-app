@@ -27,6 +27,7 @@
     <tr><td class="label">Carton per M<sup>3</sup>:</td><td><%= @item.info.carton_m3 %></td></tr>
     <tr><td class="label">Estimated stock:</td><td><%= @item.info.estimated_stock %></td></tr>
     <tr><td class="label">Estimated date in stock:</td><td><%= @item.info.projected_printing %></td></tr>
+    <tr><td class="label">Price:</td><td><%= @item.final_price %></td></tr>
     <tr><td class="label">Aurora product:</td><td><%= @item.info.aurora_product == 1 ? 'Yes' : 'No' %></td></tr>
 </table>
 </div>
