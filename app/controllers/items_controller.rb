@@ -2,8 +2,16 @@ class ItemsController < ApplicationController
   # GET /items
   # GET /items.xml
   def index
-    @items = Item.aurora
+    if not params[:p_code].nil?
+      session[:p_code] = params[:p_code];
+    end
 
+    if session[:p_code].blank?
+      @items = Item.aurora
+    else
+      @items = Item.aurora.where(:product_code => session[:p_code])
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @items }

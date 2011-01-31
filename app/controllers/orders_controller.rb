@@ -2,8 +2,16 @@ class OrdersController < ApplicationController
   # GET /orders
   # GET /orders.xml
   def index
-    @orders = Order.aurora
+    if not params[:order_code].nil?
+      session[:order_code] = params[:order_code];
+    end
 
+    if session[:order_code].blank?
+      @orders = Order.aurora
+    else
+      @orders = Order.aurora.where(:id => session[:order_code])
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @orders }

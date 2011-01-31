@@ -22,13 +22,13 @@ class Item < ActiveRecord::Base
     if p.blank?
       if subcategory.present?
         p = prices.find(:first, :conditions => ['subcategories_id = ? and companies_id = 7', subcategory.id.to_s])
-      end
-    end
 
-    # By category.
-    if p.blank?
-      if subcategory.category.present?
-        p = prices.find(:first, :conditions => ['categories_id = ? and companies_id = 7', subcategory.category.id.to_s])
+        # By category.
+        if p.blank?
+          if subcategory.category.present?
+            p = prices.find(:first, :conditions => ['categories_id = ? and companies_id = 7', subcategory.category.id.to_s])
+          end
+        end
       end
     end
 

@@ -1,5 +1,13 @@
 <h1>Orders</h1>
 
+<div id="filter">
+<%= form_tag('/orders', :method => "get") do %>
+  <%= label_tag(:order_code, "Order #:") %>
+  <%= text_field_tag(:order_code) %>
+  <%= submit_tag("Find") %>
+<% end %>
+</div>
+
 <table cellpadding="0" cellspacing="0" border="0" id="table" class="sortable">
   <thead>
     <tr>

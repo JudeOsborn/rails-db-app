@@ -2,8 +2,16 @@ class PrintJobsController < ApplicationController
   # GET /print_jobs
   # GET /print_jobs.xml
   def index
-    @print_jobs = PrintJob.all
+    if not params[:pj_code].nil?
+      session[:pj_code] = params[:pj_code];
+    end
 
+    if session[:pj_code].blank?
+      @print_jobs = PrintJob.all
+    else
+      @print_jobs = PrintJob.where(:code => session[:pj_code])
+    end
+    
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @print_jobs }
