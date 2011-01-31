@@ -1,4 +1,6 @@
 AuroraProducts::Application.routes.draw do
+  resources :prices
+
   resources :print_job_statuses
 
   resources :print_job_status_dates

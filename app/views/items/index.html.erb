@@ -9,6 +9,7 @@
       <th><h4>Language</h4></th>
       <th><h4>Subcategory</h4></th>
       <th><h4>Format</h4></th>
+      <th><h4>Price</h4></th>
     </tr>
   </thead>
 
@@ -21,6 +22,7 @@
       <td><%= item.language.language %></td>
       <td><%= item.subcategory.blank? ? '' : item.subcategory.subcategory %></td>
       <td><%= item.format.blank? ? '' : item.format.format %></td>
+      <td><%= item.final_price %></td>
     </tr>
     <% end %>
   </tbody>
