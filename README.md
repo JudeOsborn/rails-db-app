@@ -1,0 +1,1 @@
+A very basic Rails application thrown together in only a day or so of work all together. This was done after having not touched rails for over a year. A testiment to how easy it is to throw up a simple web site and database. Hosting on Heroku only simplified the process further.
